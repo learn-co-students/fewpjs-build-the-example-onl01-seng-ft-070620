@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // when the user clicks on an empty heart, invoke mimicServerCall()
   // catch error if given one in response
   // if not, make the heart full
-// when user clicks on a full heart, change heart to empty w/o "server call" 
+// when user clicks on a full heart, change heart to empty w/o "server call"
   for (const element of hearts) {
     element.addEventListener("click", (e) => {
       if (element.classList.contains("activated-heart")) {
@@ -19,16 +19,19 @@ document.addEventListener("DOMContentLoaded", function() {
         element.classList.remove("activated-heart") // remove the class
       } else {
         mimicServerCall()
+
         .then(() => {
           element.innerText = FULL_HEART // change the heart to a full heart
           element.classList.add("activated-heart") // add a class to it
         })
+
         .catch(error => {
           modal.classList.remove("hidden") // remove the modal's .hidden class
           errorMsg.innerHTML = error // replace its text with the error
           // restore the .hidden class after 5 seconds, hiding the modal
           setTimeout(function() {modal.classList.add("hidden")}, 5000)
-        }) // end catch
+        })
+
       } // end else
     }) // end element event listener
   } // end for..of loop
