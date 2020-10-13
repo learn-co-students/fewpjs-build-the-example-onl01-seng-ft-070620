@@ -1,4 +1,4 @@
-// defining text characters for the empty and full hearts
+// text characters for empty and full hearts
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
@@ -8,28 +8,26 @@ document.addEventListener("DOMContentLoaded", function() {
   const errorMsg = document.getElementById("modal").querySelector("h2")
   const hearts = document.querySelectorAll(".like-glyph")
 
-// when the user clicks on an empty heart, invoke mimicServerCall()
-  // catch error if given one in response
-  // if not, make the heart full
-// when user clicks on a full heart, change heart to empty w/o "server call"
+// when user clicks an empty heart, invoke mimicServerCall()
+// when user clicks a full heart, change heart to empty w/o "server call"
   for (const element of hearts) {
-    element.addEventListener("click", (e) => {
+    element.addEventListener("click", function() {
       if (element.classList.contains("activated-heart")) {
         element.innerText = EMPTY_HEART // change the heart to a empty heart
         element.classList.remove("activated-heart") // remove the class
       } else {
         mimicServerCall()
 
-        .then(() => {
+        .then(function() {
           element.innerText = FULL_HEART // change the heart to a full heart
           element.classList.add("activated-heart") // add a class to it
         })
 
-        .catch(error => {
+        .catch(function(error) {
           modal.classList.remove("hidden") // remove the modal's .hidden class
           errorMsg.innerHTML = error // replace its text with the error
-          // restore the .hidden class after 5 seconds, hiding the modal
           setTimeout(function() {modal.classList.add("hidden")}, 5000)
+          // restore the .hidden class after 5 seconds, hiding the modal
         })
 
       } // end else
