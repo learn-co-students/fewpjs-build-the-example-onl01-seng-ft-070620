@@ -15,7 +15,7 @@ have. Right now you should have the information needed to create a basic web
 application!
 
 Your goal is to implement "Simple Liker," from scratch. As a reminder, the final product
-should look something like this:
+should look something like this: 
 
 ![Screenshot Final](https://curriculum-content.s3.amazonaws.com/fewpjs/fewpjs-build-the-example/finished_product_ss.png)
 
