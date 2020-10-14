@@ -4,6 +4,34 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let glypthStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
+
+let colorStates = {
+  "red" : "",
+  "" : "red"
+};
+
+let articleHearts = document.querySelectorAll(".like");
+
+function likeCallback(e) {
+  let heart = e.target;
+  mimicServerCall("bogusUrl")
+  .then(function(serverMessage) {
+    heart.innerText = glypthStates[heart.innerText];
+    heart.style.color = colorStates[heart.style.color];
+  })
+  .catch(function(error) {
+    document.getElementById("modal").className = "";
+  });
+}
+
+for (let glyph of articleHearts) {
+  glyph.addEventListener("click", likeCallback);
+}
+
 
 
 
@@ -23,3 +51,5 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
+
