@@ -6,6 +6,68 @@ const FULL_HEART = '♥'
 
 
 
+document.addEventListener("DOMContentLoaded",  () => {
+  // hideError()
+  findHeart()
+})
+
+let allHearts = document.getElementsByClassName('like-glyph')
+let errorBox = document.getElementById('modal')
+
+// function hideError() {
+//   errorBox.hidden = true
+// }
+
+function findHeart() {
+  for ( let heart of allHearts) {
+    heart.addEventListener('click', likeHeart)
+  }
+}
+
+function likeHeart() {
+  heart = event.target
+  mimicServerCall("bogusUrl", {forceFailure: true})
+  .then(function(serverMessage) {
+    if (heart.innerText == '♡') {
+      heart.innerText = '♥'
+    } else {
+      heart.innerText = '♡'
+    }
+  })
+  .catch(function(error) {
+    errorBox.children[0].innerText = "Error with server"
+    errorBox.hidden = false
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
